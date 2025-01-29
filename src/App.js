@@ -5,15 +5,12 @@ import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsReact from 'highcharts-react-official';
 import VennModule from 'highcharts/modules/venn';
 
-// Initialize Highcharts modules
-HighchartsMore(Highcharts);
-VennModule(Highcharts);
-
 client.config.configureEditorPanel([
   { name: "source", type: "element" },
   { name: "setsColumn", type: "column", source: "source", allowMultiple: true },
   { name: "valuesColumn", type: "column", source: "source", allowMultiple: false },
-  { name: "namesColumn", type: "column", source: "source", allowMultiple: false }
+  { name: "namesColumn", type: "column", source: "source", allowMultiple: false },
+  { name: "chartTitle", type: "text", defaultValue: "The Unattainable Triangle" }
 ]);
 
 const getSigmaData = (config, sigmaData) => {
@@ -32,10 +29,23 @@ const getSigmaData = (config, sigmaData) => {
 
   return {
     chart: {
-      type: 'venn'
+      type: 'venn',
+      spacing: [50, 0, 30, 20],
     },
     title: {
-      text: 'The Unattainable Triangle'
+      text: client.config.getKey("chartTitle"),
+      align: 'center',
+      margin: 30
+    },
+    plotOptions: {
+      venn: {
+        borderWidth: 2,
+        states: {
+          hover: {
+            borderWidth: 3
+          }
+        }
+      }
     },
     series: [{
       name: 'Venn Diagram',
@@ -70,8 +80,8 @@ const App = () => {
   }
 
   return (
-    <div>
-      <HighchartsReact highcharts={Highcharts} options={options} />
+    <div style={{ width: '100%', minHeight: '400px', height: '100%', position: 'absolute' }}>
+      <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' }}} />
     </div>
   );
 };
