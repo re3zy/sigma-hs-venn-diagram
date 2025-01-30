@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { client, useConfig, useElementData } from '@sigmacomputing/plugin';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import HighchartsVenn from 'highcharts/modules/venn';
 
 client.config.configureEditorPanel([
   { name: "source", type: "element" },
