@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { client, useConfig, useElementData } from '@sigmacomputing/plugin';
 import Highcharts from 'highcharts';
-import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsReact from 'highcharts-react-official';
-import VennModule from 'highcharts/modules/venn';
 
 client.config.configureEditorPanel([
   { name: "source", type: "element" },
